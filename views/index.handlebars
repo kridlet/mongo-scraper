@@ -1,0 +1,65 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">{{data.settings.pageTitle}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="{{data.settings.home}}">
+        <a href="/">Home</a>
+      </li>
+      <li class="{{data.settings.saved}}">
+        <a href="saved">Saved Articles</a>
+      </li>
+      {{#if data.settings.scrapeButton}}
+      <li>
+        <a class="btn btn-danger scrape-new">SCRAPE NEW ARTICLES!</a>
+      </li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron text-center">
+  <div class="overlay">
+  </div>
+  <div class="background-image">
+  </div>
+  <div class="caption">
+    <div>
+      <img src="/assets/img/nyt-header.png" width="50%" />
+    </div>
+    <h1>{{data.settings.pageTitle}}</h1>
+  </div>
+</div>
+<div class="container-fluid article-container">
+
+  {{#each data.articles}}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="media">
+        <span class="media-left">
+          <img src="{{imageURL}}" alt="story image">
+        </span>
+        <div class="media-body">
+          <a class="article-link" target="_blank" href="{{articleURL}}">
+            <h3 class="media-heading">{{title}}</h3>
+          </a>
+          {{#if saved}}
+          <a class="btn btn-danger delete" data-id="{{_id}}">Delete From Saved</a>
+          <a class="btn btn-info notes" data-id="{{_id}}">Article Notes</a>
+          {{else}}
+          <a class="btn btn-success save" data-id="{{_id}}">Save Article</a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">{{synopsis}}</div>
+  </div>
+
+  {{/each}}
+
+  <footer class="footer">
+    <div class="container">
+      <p>New York Times Mongo Scraper</p>
+    </div>
+  </footer>
