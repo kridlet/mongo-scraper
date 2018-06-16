@@ -29,7 +29,7 @@ app.set('view engine', 'handlebars');
 
 // Connect to the Mongo DB
 const MONGO = process.env.MONGODB_URI || 'mongodb://localhost/nyt';
-
+mongoose.Promise = Promise;
 mongoose
   .connect(MONGO)
   .then( result => {
